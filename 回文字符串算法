@@ -1,0 +1,55 @@
+public class DayNineOne {
+	public static void main(String[] args) {
+		String str = "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc";
+		System.out.println(longestPalindrome(str));
+	}
+
+	/**
+	 * 自己代码
+	 * @param s
+	 * @return
+	 */
+	public static String longestPalindrome(String s) {
+		if(isPalindrome(s)) {
+			return s;
+		}
+		//回文长度
+		int length = 0;
+		//回文字符串
+		String palindrome="";
+		//最长长度
+		int max = 0;
+		//最长长度字符串
+		String resultStr="";
+		char[] str = s.toCharArray();
+		for(int i=0;i<str.length;i++) {
+			for(int j=str.length-1;j>=i;j--) {
+				if(str[i]==str[j]) {
+					if(isPalindrome(s.substring(i, j+1))) {
+						palindrome = s.substring(i,j+1);
+						length = palindrome.length();
+						if(max <= length) {
+							max=length;
+							resultStr = palindrome;
+						}else {
+							max = max;
+						}
+							
+					}
+				}
+			}
+		}
+		
+		return resultStr;
+	}
+	
+	public static boolean isPalindrome(String s) {
+		StringBuffer str = new StringBuffer(s);
+		String reverse = str.reverse().toString();
+		if(reverse.equals(s)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+}
